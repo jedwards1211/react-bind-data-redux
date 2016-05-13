@@ -9,7 +9,6 @@ export function setField(path: any[],
   options?: {
     meta?: Object,
     actionTypePrefix?: string,
-    reduxPath?: mixed[]
   } = {}): Action
 {
   if (path.length < 1) throw new Error('path must not be empty')
@@ -24,15 +23,10 @@ export function setField(path: any[],
     .toUpperCase()
   if (actionTypePrefix) type = actionTypePrefix + type
 
-  let {reduxPath} = options || {}
-
   const result: Action = {
     type,
     payload: newValue,
-    meta: Object.assign({
-      bindDataPath: path,
-      reduxPath
-    }, meta)
+    meta: Object.assign({bindDataPath: path}, meta)
   }
   if (newValue instanceof Error) result.error = true
   return result

@@ -20,7 +20,8 @@ describe('actions.setField', () => {
   it('prepends actionTypePrefix if given', () => {
     expect(setField(['field'], 3, {actionTypePrefix: 'MY_COMP.'}).type).toBe('MY_COMP.SET_FIELD')
   })
-  it('puts reduxPath in meta if given', () => {
-    expect(setField(['field'], 3, {reduxPath: ['reduxPath']}).meta.reduxPath).toEqual(['reduxPath'])
+  it('includes meta if given', () => {
+    expect(setField(['field'], 3, {meta: {reduxPath: ['reduxPath']}}).meta.bindDataPath).toEqual(['field'])
+    expect(setField(['field'], 3, {meta: {reduxPath: ['reduxPath']}}).meta.reduxPath).toEqual(['reduxPath'])
   })
 })
