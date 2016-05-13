@@ -1,4 +1,5 @@
 /* @flow */
 
-import HelloWorld from './HelloWorld'
-export default HelloWorld
+import * as actions from './actions'
+
+export {actions}
